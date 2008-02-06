@@ -1,0 +1,2 @@
+module PartyShuffleHelper
+end

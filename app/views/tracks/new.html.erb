@@ -1,0 +1,26 @@
+<h1>New track</h1>
+
+<%= error_messages_for :track %>
+
+<% form_for(@track) do |f| %>
+  <p>
+    <b>Permanent</b><br />
+    <%= f.text_field :persistent_id %>
+  </p>
+
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Artist</b><br />
+    <%= f.text_field :artist %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', tracks_path %>

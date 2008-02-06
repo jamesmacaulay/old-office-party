@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  text-align: center;
+}
+
+#content {
+  padding: 10px;
+  text-align: left;
+  margin: 0 auto;
+  width: 770px;
+}
+
+img {
+  border: none;
+}
+
+h1, h2, h3, h4, h5, h6, .header {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  color: #418EE3;
+}
+
+#session {
+  height: 45px;
+  float:right;
+  margin-bottom: 0px;
+}
+
+#session p {
+  position: relative;
+  top: 15px;
+}
+
+
+#header_container {
+  height: 100px;
+  padding-top: 20px;
+}
+
+#current_track_container {
+  clear: both;
+  width: 770px;
+  height:   100px;
+  background: black;
+  color:      white;
+}
+
+#current_track_rating_container {
+  margin-left: 425px;
+  height:     85px;
+  border-left: thin solid gray;
+  text-align: center;
+  padding-top: 15px;
+}
+
+#current_track_rating {
+  background: #222;
+  width: 325px;
+  height: 65px;
+  margin:0 auto;
+  padding:0;
+}
+
+
+#current_track_rating_background {
+  height: 65px;
+  left: 0px;
+  top: 0px;
+  background: #418EE3;
+  
+  /*Orange and grey stars:*/
+  /*background: #E16529;*/
+  /*background: #999;*/
+}
+
+#current_track_stars {
+  margin: 0 auto;
+  position: relative;
+  bottom: 65px;
+}
+
+
+#current_track {
+  float: left;
+  padding:    5px;
+  width:      415px;
+}
+
+#current_track_name {
+  font-size: 180%;
+}
+
+#current_track ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#player_position {
+  padding:    0px;
+  font-size:  300%;
+  float:      right;
+}
+
+#current_track_scrubber {
+  width: 100%;
+  color: gray;
+  font-size: 90%;
+}
+
+#current_track_scrubber_loaded {
+  background: gray;
+  height: 5px;
+}
+
+#current_track_duration {
+  float: right;
+}
+
+#play_controls {
+  margin-top: 10px;
+  height: 20px;
+  text-align: center;
+}
+
+
+th {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  background: #ddd;
+  text-align: left;
+  padding-left: 2px;
+  border-bottom: thin solid gray;
+  border-right: thin solid white;
+}
+
+td div {
+  height: 13px;
+  overflow: hidden;
+}
+
+#party_shuffle td div{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#party_shuffle .track.current {
+  background: black;
+  color: #418EE3;
+}
+
+#party_shuffle .track.current td.align-right div{
+  padding-left: 5px;
+  padding-right: 2px;
+}
+
+.align-right {
+  text-align: right;
+}

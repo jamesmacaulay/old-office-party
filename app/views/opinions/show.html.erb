@@ -1,0 +1,18 @@
+<p>
+  <b>User:</b>
+  <%=h @opinion.user_id %>
+</p>
+
+<p>
+  <b>Track:</b>
+  <%=h @opinion.track_id %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @opinion.rating %>
+</p>
+
+
+<%= link_to 'Edit', edit_opinion_path(@opinion) %> |
+<%= link_to 'Back', opinions_path %>

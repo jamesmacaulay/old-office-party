@@ -1,0 +1,17 @@
+  <tr>
+    <th style="width: 270px">Name</th>
+    <th style="width: 150px">Artist</th>
+    <th style="width: 230px">Album</th>
+    <th class="align-right" style="width: 50px">Duration</th>
+    <th class="align-right" style="width: 50px">Rating</th>
+  </tr>
+<% for track in tracks %>
+  <tr class="track<%= " current" if track.current? %>">
+    <td><div><%= track.name %></div></td>
+    <td><div><%= track.artist %></div></td>
+    <td><div><%= track.album %></div></td>
+    <td class="align-right"><div><%= format_duration track.duration %></div></td>
+    <td class="align-right"><div><%= track.rating %></div></td>
+  </tr>
+  
+<% end %>

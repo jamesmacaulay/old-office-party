@@ -1,0 +1,126 @@
+<div id="header_container">
+  
+<div id="session">
+  <% if logged_in? -%>
+    <p>logged in as <%= @user.login %> | <%= link_to 'logout', session_path, :method => 'delete' %></p>
+  <% else -%>
+    <% form_tag session_path do -%>
+  <table border="0" cellspacing="1" cellpadding="0">
+    <tr><th><label for="login">Login</label></th><th><label for="password">Password</label></th><th></th></tr>
+    <tr>
+      <td><%= text_field_tag 'login' %></td>
+      <td><%= password_field_tag 'password' %></td>
+      <td><%= submit_tag 'Log in' %></td>
+    </tr>
+  </table>
+    <% end -%>
+  <% end -%>
+</div>
+
+<div id="current_track_container">
+<div id="current_track">
+  <div id="player_position">
+    <%= format_duration @player_position %>
+  </div>
+  <ul>
+    <li id="current_track_name" class="header"><%= @current_track.name %></li>
+    <li id="current_track_artist"><%= @current_track.artist %></li>
+  </ul>
+  <div id="play_controls">
+    <%= link_to_remote(image_tag('control_start.png', :size => "16x16", :alt=> "previous track", :title => "previous track"), :url => {:action => 'control', :command => 'previous_track'}, :after => "timeToUpdate=true;") if logged_in? %>
+    
+    <span id="playpause"><%= play_or_pause_button(@playing, logged_in?) if logged_in? %></span>
+    
+    <%= link_to_remote(image_tag('control_end.png', :size => "16x16", :alt=> "next track", :title => "next track"), :url => {:action => 'control', :command => 'next_track'}, :after => "timeToUpdate=true;") if logged_in? %>
+  </div>
+  <div id="current_track_scrubber" onclick="">
+    <div id="current_track_duration" style="float:right"><%= format_duration @current_track.duration %></div>
+    <div>0:00</div>
+    <div id="current_track_scrubber_loaded" style="clear: both; width: <%= @player_position.to_f / @current_track.duration * 405 %>px;"></div></div>
+  <div style="height: 1px;margin-bottom: 30px;"></div>
+</div>
+
+<div id="current_track_rating_container"><div id="current_track_rating">
+<div id="current_track_rating_background" style="width: <%= (@current_track.rating / 100.0 * 325).round %>px;"></div><div id="current_track_stars"><%= rating_stars @user, @current_track  %></div></div>
+</div>
+
+</div>
+</div>
+<div style="clear: both;"></div>
+
+
+<table id="party_shuffle" cellspacing="0">
+<%= render :partial => 'tracks', :object => @tracks %>
+</table>
+
+<script type="text/javascript">
+//<![CDATA[
+
+//preload images
+new Image().src = "<%= image_path 'control_pause.png' %>";
+new Image().src = "<%= image_path 'control_play.png' %>";
+new Image().src = "<%= image_path 'control_previous.png' %>";
+new Image().src = "<%= image_path 'control_next.png' %>";
+new Image().src = "<%= image_path 'star.png' %>";
+new Image().src = "<%= image_path 'star-outline.png' %>";
+
+function incrementTime(elementID) {
+  var chunks = $(elementID).innerHTML.split(":");
+  var seconds = parseInt(chunks[chunks.length - 1], 10);
+  var minutes = parseInt(chunks[chunks.length - 2], 10);
+  seconds += 1;
+  if (seconds >= 60) {
+    minutes ++;
+    seconds = seconds % 60;
+  }
+  chunks[chunks.length - 1] = (seconds < 10 ? "0" : "") + seconds;
+  chunks[chunks.length - 2] = (minutes < 10 && chunks.length > 2 ? "0" : "") + minutes;
+  $(elementID).innerHTML = chunks.join(":");
+}
+function formatTime(seconds) {
+  hours = seconds / 60 / 60;
+  minutes = seconds / 60 % 60;
+  seconds = seconds % 60 % 60;
+  string = '';
+  if (hours > 0) { string += hours + ":"};
+  string += (minutes < 10 && hours > 0 ? "0" : "") + minutes;
+  string += (seconds < 10 ? "0" : "") + seconds;
+}
+function parseTime(string) {
+  var chunks = string.split(":");
+  seconds = parseInt(chunks.pop(), 10) + parseInt(chunks.pop(), 10) * 60;
+  if (chunks.length > 0) { seconds += parseInt(chunks.pop(), 10)};
+  return seconds;
+}
+function resetCurrentTrackUserStars(num) {
+  if (num == null) { num = parseInt(currentTrackUserRating / 20); }
+  for(var i=1;i<=5;i++) {
+    $('current_track_star_' + i).src = ((num >= i) ? '/images/star-outline.png' : '/images/star.png') ;
+  }
+}
+var currentTrackUserRating = <%= user_rating_for(@user, @current_track) %>;
+var playing = <%= @playing ? 'true' : 'false' %>;
+var timeToUpdate = false;
+new PeriodicalExecuter(function() {
+  if (playing) {
+    var position = parseTime($('player_position').innerHTML);
+    var duration = parseTime($('current_track_duration').innerHTML);
+    if (position >= duration) {
+      timeToUpdate = true;
+    } else {
+      incrementTime('player_position');
+      position ++;
+      $$('#current_track_scrubber_loaded')[0].setStyle({width: (parseInt(position / duration * 405))+"px" });
+    }
+  }
+}, 1);
+new PeriodicalExecuter(function() {timeToUpdate = true;}, 10);
+//]]>
+</script>
+
+<p>
+<%= periodically_call_remote :url => { :action => 'show'}, :method => 'get',
+  :frequency => 1,
+  :condition => "timeToUpdate == true",
+  :after => "timeToUpdate = false;"  %>
+</p>

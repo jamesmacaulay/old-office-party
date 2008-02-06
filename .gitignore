@@ -1,0 +1,10 @@
+*.log
+*.orig
+
+.svn
+vendor/*/.svn
+test/*.svn
+
+.DS_Store
+
+tmp/*

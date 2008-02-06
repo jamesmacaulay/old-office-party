@@ -1,0 +1,24 @@
+<h1>Listing opinions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Track</th>
+    <th>Rating</th>
+  </tr>
+
+<% for opinion in @opinions %>
+  <tr>
+    <td><%=h opinion.user_id %></td>
+    <td><%=h opinion.track_id %></td>
+    <td><%=h opinion.rating %></td>
+    <td><%= link_to 'Show', opinion %></td>
+    <td><%= link_to 'Edit', edit_opinion_path(opinion) %></td>
+    <td><%= link_to 'Destroy', opinion, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New opinion', new_opinion_path %>

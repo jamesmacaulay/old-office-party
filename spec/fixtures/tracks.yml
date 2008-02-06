@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  permanent_id: MyString
+  title: MyString
+  artist: MyString
+
+two:
+  permanent_id: MyString
+  title: MyString
+  artist: MyString

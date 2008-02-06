@@ -1,0 +1,18 @@
+<p>
+  <b>Permanent:</b>
+  <%=h @track.persistent_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @track.name %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%=h @track.artist %>
+</p>
+
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

@@ -1,0 +1,24 @@
+<h1>Listing tracks</h1>
+
+<table>
+  <tr>
+    <th>Persistent ID</th>
+    <th>Title</th>
+    <th>Artist</th>
+  </tr>
+
+<% for track in @tracks %>
+  <tr>
+    <td><%=h track.persistent_id %></td>
+    <td><%=h track.name %></td>
+    <td><%=h track.artist %></td>
+    <td><%= link_to 'Show', track %></td>
+    <td><%= link_to 'Edit', edit_track_path(track) %></td>
+    <td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New track', new_track_path %>
