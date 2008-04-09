@@ -9,6 +9,7 @@ if session[:current_track_id] != @current_track.id
   user_rating = user_rating_for(@user, @current_track)
   page << "currentTrackUserRating = #{user_rating};"
   page << "resetCurrentTrackUserStars();"
+  page.replace_html 'current_track_stars', rating_stars(@user, @current_track)
   ["name", "artist", "duration"].each do |property|
     value = @current_track[property]
     value = format_duration(value) if property == 'duration'

@@ -22,15 +22,26 @@ h1, h2, h3, h4, h5, h6, .header {
   color: #418EE3;
 }
 
+th {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+}
+
 #session {
   height: 45px;
   float:right;
   margin-bottom: 0px;
 }
 
+#session th {
+  padding-right: 4px;
+  background: white;
+  text-align: right;
+  color: gray;
+}
+
 #session p {
   position: relative;
-  top: 15px;
+  top: 12px;
 }
 
 
@@ -93,6 +104,7 @@ h1, h2, h3, h4, h5, h6, .header {
 }
 
 #current_track ul {
+  height: 50px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -120,14 +132,12 @@ h1, h2, h3, h4, h5, h6, .header {
 }
 
 #play_controls {
-  margin-top: 10px;
   height: 20px;
   text-align: center;
 }
 
 
-th {
-  font-family: "Georgia", "Times New Roman", Times, serif;
+#party_shuffle th {
   background: #ddd;
   text-align: left;
   padding-left: 2px;
@@ -135,14 +145,11 @@ th {
   border-right: thin solid white;
 }
 
-td div {
-  height: 13px;
-  overflow: hidden;
-}
-
 #party_shuffle td div{
   padding-left: 2px;
   padding-right: 2px;
+  height: 13px;
+  overflow: hidden;
 }
 
 #party_shuffle .track.current {

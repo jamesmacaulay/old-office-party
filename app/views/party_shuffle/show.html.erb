@@ -8,9 +8,9 @@
   <table border="0" cellspacing="1" cellpadding="0">
     <tr><th><label for="login">Login</label></th><th><label for="password">Password</label></th><th></th></tr>
     <tr>
-      <td><%= text_field_tag 'login' %></td>
-      <td><%= password_field_tag 'password' %></td>
-      <td><%= submit_tag 'Log in' %></td>
+      <td><%= text_field_tag 'login', '', :size => 10 %></td>
+      <td><%= password_field_tag 'password', '', :size => 10 %></td>
+      <td><%= submit_tag "Let's do this" %></td>
     </tr>
   </table>
     <% end -%>
@@ -52,6 +52,8 @@
 <table id="party_shuffle" cellspacing="0">
 <%= render :partial => 'tracks', :object => @tracks %>
 </table>
+
+<p></p>
 
 <script type="text/javascript">
 //<![CDATA[

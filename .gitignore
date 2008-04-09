@@ -8,3 +8,5 @@ test/*.svn
 .DS_Store
 
 tmp/*
+
+db/*.sqlite3
