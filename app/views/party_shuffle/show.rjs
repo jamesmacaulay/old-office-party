@@ -4,6 +4,15 @@ page << "playing = #{@playing};"
 page.replace_html 'playpause', play_or_pause_button(@playing, logged_in?) if logged_in?
 
 if session[:current_track_id] != @current_track.id
+  page << "if (typeof(window.fluid) != 'undefined') {
+  window.fluid.showGrowlNotification({
+    title: '#{@current_track.name}', 
+    description: '#{@current_track.artist}', 
+    priority: 1, 
+    sticky: false,
+    identifier: 'office-party'
+    });
+  }"
   session[:current_track_id] = @current_track.id
   page[:current_track_rating_background].set_style :width => "#{(@current_track.rating / 100.0 * 325).round}px"
   user_rating = user_rating_for(@user, @current_track)

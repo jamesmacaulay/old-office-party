@@ -13,11 +13,18 @@ rb-appscript gem 0.5.0
 
 (is that all?)
 
+Installation
+------------
+
+git clone git@github.com:jamesmacaulay/office-party.git
+cd office-party.git
+rake db:migrate
+
 Usage
 -----
 
-rake db:migrate
 script/server
+
 switch iTunes to play from party shuffle
 make users, rate tracks
 iTunes gets updated with average of everyone's ratings
@@ -26,11 +33,21 @@ iTunes gets updated with average of everyone's ratings
 TODO
 ----
 
-specs, specs, specs
-admin UI: user management; iTunes sync management; app options
-turn PartyShuffleController into all-purpose PlaylistController
-track uploads
-regularly add favourite tracks of logged-in users to party shuffle as it plays
+* specs, specs, specs
+* admin UI: user management; iTunes sync management; app options
+* allow users to start the party shuffle playing whenever they want
+* regularly add favourite tracks of logged-in users to party shuffle as it plays
+* track uploads/downloads
+* make iTunes handler less awful, more modular
+* improve caching (both DB and rb-appscript caching)
+
+Some Day...
+-----------
+
+* turn PartyShuffleController into all-purpose PlaylistController
+* album artwork
+* campfire integration
+* support for other platforms (iTunes for Windows; Rhythmbox or Amarok for Linux, etc.)
 
 
 -
